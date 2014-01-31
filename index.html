@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+$(document).ready(function(){
+
+  $("#progressbarcontainer1, #progressbarcontainer2,#progressbarcontainer3").css({"border": "1px solid #ddd","width":"300px","color":"#ffff","height":"25px","text-align":"center"});
+$("#progressbar1,#progressbar2,#progressbar3").css({"color":"#ffff","height":"25px","width":"0px"});
+$("#progressselect").change(function(){
+     
+
+});
+$("button").click(function(){
+$('#'+$("#progressselect").val()).width()
+var width = $('#'+$("#progressselect").val()).width() + ($(this).val()/100)*300;
+if(width<0)
+{
+$('#'+$("#progressselect").val()).css("background","url('image1.png') repeat");
+$('#'+$("#progressselect").val()).width(width);
+$('#'+$("#progressselect").val()).next("span").html(0);
+}
+else if(width<=300)
+{
+$('#'+$("#progressselect").val()).css("background","url('image1.png') repeat");
+$('#'+$("#progressselect").val()).width(width);
+$('#'+$("#progressselect").val()).next("span").html(parseInt($(this).val())+parseInt($('#'+$("#progressselect").val()).next("span").html()));
+
+}
+else if(width>300)
+{
+$('#'+$("#progressselect").val()).width(width);
+$('#'+$("#progressselect").val()).css({"background":"url('image2.png')","background-size":"300px 25px","background-repeat":"no-repeat"});
+$('#'+$("#progressselect").val()).next("span").html(parseInt($(this).val())+parseInt($('#'+$("#progressselect").val()).next("span").html()));
+
+}
+});
+   
+ 
+});
+</script>
+</head>
+<body>
+<h2>Progress Bar Demo</h2>
+<div id="progressbarcontainer1">
+<div id="progressbar1">
+</div><span id=1>0</span>%
+</div>
+<br>
+<div id="progressbarcontainer2">
+<div id="progressbar2">
+</div><span id=2>0</span>%
+</div>
+<br>
+<div id="progressbarcontainer3">
+<div id="progressbar3">
+</div><span id=3>0</span>%
+</div>
+<br>
+<div>
+<select id="progressselect">
+<option value="progressbar1" selected>Progress Bar 1</option>
+<option  value="progressbar2">Progress Bar 2</option>
+<option  value="progressbar3">Progress Bar 3</option>
+</select>
+<button id="b1" value="-25">-25</button>
+<button id="b2" value="-10">-10</button>
+<button id="b3" value="+10">+10</button>
+<button id="b4" value="+25">+25</button>
+</div>
+</body>
+</html>
